@@ -1,14 +1,14 @@
 import type { IconMap, SocialLink, Site } from '@/types'
 
 export const SITE: Site = {
-  title: 'Cojocaru David',
+  title: 'Sandeep P S',
   description:
-    "Junior Full Stack Developer specializing in modern web technologies. Expert in React, Node.js, TypeScript, and cloud development. Read my latest tech tutorials, project insights, and programming tips on web development, DevOps, and software engineering best practices.",
-  href: 'https://www.cojocarudavid.me',
-  author: 'Cojocaru David',
+    "Microsoft MVP (M365, SharePoint)🏅 | Senior Software Engineer @ EY | Blogger | Building M365 + AI-powered experiences that make collaboration frictionless 🚀",
+  href: 'https://www.sandeepps.me',
+  author: 'Sandeep P S',
   locale: 'en-US',
-  location: 'Romania',
-  email: 'contact@cojocarudavid.me'
+  location: 'India',
+  email: 'Sandeep.ps0124@outlook.com'
 }
 
 export const NAV_LINKS: SocialLink[] = [
@@ -28,20 +28,16 @@ export const NAV_LINKS: SocialLink[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: 'https://github.com/cojocaru-david?ref=personal-website',
+    href: 'https://github.com/Sandeep-FED?ref=personal-website',
     label: 'GitHub',
   },
   {
-    href: 'mailto:contact@cojocarudavid.me',
+    href: 'mailto:sandeep.ps0124@outlook.com',
     label: 'Email',
   },
   {
-    href: 'tel:+40764132266',
+    href: 'tel:+918848080012',
     label: 'Phone',
-  },
-  {
-    href: 'https://www.instagram.com/david._.cojo?ref=personal-website',
-    label: 'Instagram',
   },
   {
     href: '/rss.xml',
@@ -52,7 +48,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
 export const ICON_MAP: IconMap = {
   Website: 'lucide:globe',
   GitHub: 'lucide:github',
-  Instagram: 'lucide:instagram',
   Phone: 'lucide:phone',
   Email: 'lucide:mail',
   RSS: 'lucide:rss',
@@ -65,54 +60,66 @@ export interface Category {
 
 export type Technologies = {
   'Web Development': Category[]
+  'Microsoft 365 & SharePoint': Category[]
+  'Frontend Frameworks & Libraries': Category[]
+  'Power Platform': Category[]
+  'Cloud & Azure Services': Category[]
+  'Azure AI Services': Category[]
   'Development Tools': Category[]
-  'Hosting and Cloud Services': Category[]
-  'Operating Systems': Category[]
-  'Other Programming Languages and Technologies': Category[]
-  'Web Servers': Category[]
-  Databases: Category[]
-  'Other Software': Category[]
+  'Databases': Category[]
 }
 
 export const technologies: Technologies = {
   'Web Development': [
-    { text: 'HTML', logo: 'mdi:language-html5' },
+    { text: 'HTML5', logo: 'mdi:language-html5' },
+    { text: 'CSS3', logo: 'mdi:language-css3' },
     { text: 'JavaScript', logo: 'mdi:language-javascript' },
-    { text: 'CSS', logo: 'mdi:language-css3' },
-    { text: 'PHP', logo: 'mdi:language-php' },
-    { text: 'Astro', logo: 'simple-icons:astro' },
+    { text: 'TypeScript', logo: 'mdi:language-typescript' },
+  ],
+
+  'Microsoft 365 & SharePoint': [
+    { text: 'SharePoint Online', logo: 'mdi:microsoft' },
+    { text: 'SPFx (SharePoint Framework)', logo: 'mdi:microsoft' },
+    { text: 'Microsoft Graph API', logo: 'mdi:microsoft' },
+    { text: 'PnP JS', logo: 'mdi:microsoft' },
+  ],
+
+  'Frontend Frameworks & Libraries': [
+    { text: 'React', logo: 'mdi:react' },
+    { text: 'Fluent UI', logo: 'mdi:microsoft' },
     { text: 'Tailwind CSS', logo: 'mdi:tailwind' },
   ],
-  'Development Tools': [
-    { text: 'Visual Studio Code', logo: 'mdi:visual-studio-code' },
-    { text: 'Git', logo: 'mdi:git' },
+
+  'Power Platform': [
+    { text: 'Power Apps', logo: 'mdi:microsoft' },
+    { text: 'Power Automate', logo: 'mdi:microsoft' },
   ],
-  'Hosting and Cloud Services': [
-    { text: 'DigitalOcean', logo: 'mdi:digital-ocean' },
-    { text: 'Cloudflare', logo: 'cib:cloudflare' },
-    { text: 'Netlify', logo: 'cib:netlify' },
-  ],
-  'Operating Systems': [
-    { text: 'Windows', logo: 'mdi:windows' },
-    { text: 'Ubuntu', logo: 'mdi:ubuntu' },
-  ],
-  'Other Programming Languages and Technologies': [
-    { text: 'Lua', logo: 'mdi:language-lua' },
-    { text: 'Golang', logo: 'mdi:language-go' },
-    { text: 'Node.js', logo: 'mdi:nodejs' },
-  ],
-  'Web Servers': [
-    { text: 'Apache', logo: 'cib:apache' },
-    { text: 'Nginx', logo: 'cib:nginx' },
-  ],
-  Databases: [
-    { text: 'MySQL', logo: 'cib:mysql' },
-    { text: 'MongoDB', logo: 'cib:mongodb' },
-  ],
-  'Other Software': [
-    { text: 'Discord', logo: 'mdi:discord' },
-    { text: 'Spotify', logo: 'mdi:spotify' },
-    { text: 'Visual Studio', logo: 'mdi:visual-studio' },
-    { text: 'Brave', logo: 'cib:brave' },
-  ],
+
+  'Cloud & Azure Services': [
+  { text: 'Microsoft Azure', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure Functions', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure Logic Apps', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure App Services', logo: 'mdi:microsoft-azure' },
+],
+
+'Azure AI Services': [
+  { text: 'Azure AI Document Intelligence', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure AI Search', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure OpenAI Service', logo: 'mdi:microsoft-azure' },
+  { text: 'Azure Cognitive Services', logo: 'mdi:microsoft-azure' },
+],
+
+'Development Tools': [
+  { text: 'Visual Studio Code', logo: 'mdi:visual-studio-code' },
+  { text: 'Visual Studio', logo: 'mdi:visual-studio' },
+  { text: 'Git', logo: 'mdi:git' },
+  { text: 'GitHub', logo: 'mdi:github' },
+  { text: 'Azure DevOps', logo: 'mdi:microsoft-azure-devops' },
+],
+
+Databases: [
+  { text: 'SharePoint', logo: 'mdi:microsoft' },
+  { text: 'Azure Cosmos DB', logo: 'mdi:microsoft-azure' },
+  { text: 'Supabase', logo: 'mdi:supabase' },
+],
 }

@@ -2,57 +2,39 @@ import { useEffect } from 'react'
 import { technologies, type Technologies, type Category } from '../../consts'
 import { InfiniteScroll } from '../ui/infinite-scroll'
 import { type IconType } from 'react-icons'
-import { FaQuestionCircle } from 'react-icons/fa'
+import { FaMicrosoft, FaQuestionCircle } from 'react-icons/fa'
 import {
   SiHtml5,
   SiJavascript,
   SiCss3,
-  SiPhp,
   SiAstro,
   SiTailwindcss,
   SiGit,
-  SiDigitalocean,
-  SiCloudflare,
-  SiNetlify,
-  SiUbuntu,
-  SiLua,
-  SiGo,
-  SiNodedotjs,
-  SiApache,
-  SiNginx,
-  SiMysql,
-  SiMongodb,
-  SiDiscord,
-  SiSpotify,
-  SiBrave,
+  SiReact,
 } from 'react-icons/si'
-import { FileCode, LucideAppWindow, Code } from 'lucide-react'
+import { FiDatabase } from "react-icons/fi";
+import { RiSupabaseLine } from "react-icons/ri";
+import { TbBrandTypescript } from 'react-icons/tb'
+import {VscAzure, VscAzureDevops, VscGithub, VscVscode} from 'react-icons/vsc'
+import {  LucideAppWindow, Code } from 'lucide-react'
 
 const iconMap: { [key: string]: IconType } = {
   'mdi:language-html5': SiHtml5,
   'mdi:language-javascript': SiJavascript,
+  'mdi:language-typescript': TbBrandTypescript,
   'mdi:language-css3': SiCss3,
-  'mdi:language-php': SiPhp,
+  'mdi:react': SiReact,
+  'mdi:microsoft': FaMicrosoft,
   'simple-icons:astro': SiAstro,
   'mdi:tailwind': SiTailwindcss,
   'mdi:git': SiGit,
-  'mdi:digital-ocean': SiDigitalocean,
-  'cib:cloudflare': SiCloudflare,
-  'cib:netlify': SiNetlify,
-  'mdi:ubuntu': SiUbuntu,
-  'mdi:language-lua': SiLua,
-  'mdi:language-go': SiGo,
-  'mdi:nodejs': SiNodedotjs,
-  'cib:apache': SiApache,
-  'cib:nginx': SiNginx,
-  'cib:mysql': SiMysql,
-  'cib:mongodb': SiMongodb,
-  'mdi:discord': SiDiscord,
-  'mdi:spotify': SiSpotify,
-  'cib:brave': SiBrave,
-  'mdi:visual-studio-code': FileCode,
+  'mdi:github': VscGithub,
+  'mdi:microsoft-azure': VscAzure,
+  'mdi:microsoft-azure-devops': VscAzureDevops,
+  'mdi:visual-studio-code': VscVscode,
   'mdi:windows': LucideAppWindow,
   'mdi:visual-studio': Code,
+  'mdi:supabase': RiSupabaseLine,
 }
 
 const categories = Object.keys(technologies)
