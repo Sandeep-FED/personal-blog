@@ -13,7 +13,6 @@ import { formatDate, readingTime } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import { render } from 'astro:content'
 import LikePost from '@/components/LikePost.astro'
-import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts()
@@ -44,7 +43,7 @@ const structuredData = {
 }
 const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
 
-console.log('structured',structuredData.image)
+console.log('structured',post.data)
 ---
 
 <Layout canonicalUrl={canonicalUrl} isWide={true}>
@@ -68,7 +67,7 @@ console.log('structured',structuredData.image)
     </div>
     <section class="col-start-2 flex flex-col gap-y-6 text-start">
       <div class="flex flex-col">
-        <img src={`/src/assets/${post.id}.png`} alt={post.data.title}/>
+        <img src={post.data.image?.src} alt={post.data.title}/>
         <h1
           class="mb-2 text-3xl leading-tight font-semibold text-pretty sm:text-5xl pt-5"
         >

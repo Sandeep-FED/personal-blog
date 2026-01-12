@@ -12,7 +12,6 @@ import {
   SiGit,
   SiReact,
 } from 'react-icons/si'
-import { FiDatabase } from "react-icons/fi";
 import { RiSupabaseLine } from "react-icons/ri";
 import { TbBrandTypescript } from 'react-icons/tb'
 import {VscAzure, VscAzureDevops, VscGithub, VscVscode} from 'react-icons/vsc'
