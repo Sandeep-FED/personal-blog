@@ -2,7 +2,7 @@
 title: "PowerShell: The Secret Weapon for Tracking SharePoint Site Page Visitors (No,It's Not a Spy Tool!)"
 description: "Unlock the power of PowerShell to track SharePoint site page visitors effortlessly. Learn how to fetch visitor data from audit logs and store it in SharePoint lists for insightful analytics."
 date: 2024-12-25
-image: "../../../assets/powershell-the-secret-weapon-for-tracking-sharepoint-site-page-visitors-no-its-not-a-spy-tool.png"
+image: "../../../assets/powershell-track-sharepoint-site-page-visitors.png"
 slug: powershell-the-secret-weapon-for-tracking-sharepoint-site-page-visitors-no-its-not-a-spy-tool
 tags: ["PowerShell", "SharePoint", "Analytics", "Automation"]
 ---

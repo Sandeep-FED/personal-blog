@@ -2,7 +2,7 @@
 title: "Efficiently Track Token Usage in Streamed Chat Completions"
 description: "Learn how to efficiently track token usage in streamed chat completions using OpenAI's API, optimizing costs and enhancing application performance."
 date: 2024-11-07
-image: "../../../assets/efficiently-track-token-usage-in-streamed-chat-completions.png"
+image: "../../../assets/efficiently-track-token-usage.png"
 slug: efficiently-track-token-usage-in-streamed-chat-completions
 tags: ["openai", "genai", "Azure", "Programming Blogs"]
 updatedDate: 2024-11-12

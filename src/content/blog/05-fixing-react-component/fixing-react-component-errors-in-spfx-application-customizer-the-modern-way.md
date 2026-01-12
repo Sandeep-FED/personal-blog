@@ -2,7 +2,7 @@
 title: "Fixing React Component Errors in SPFx Application Customizer: The Modern Way! 🚀"
 description: "Learn how to resolve React component errors in SPFx Application Customizers using the modern SharePoint Framework Toolkit approach. Discover automated dependency management and best practices for SPFx development."
 date: 2025-01-22
-image: "../../../assets/fixing-react-component-errors-in-spfx-application-customizer-the-modern-way.png"
+image: "../../../assets/fix-application-customizer-errors.png"
 slug: fixing-react-component-errors-in-spfx-application-customizer-the-modern-way
 tags:
   [

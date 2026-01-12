@@ -2,7 +2,7 @@
 title: "Say Goodbye to SharePoint List Throttling Errors: Here\u2019s How!"
 description: "Learn how to overcome SharePoint's 5,000-item list threshold using SPFx and PnPjs. This guide demonstrates batch fetching techniques to manage large lists without throttling errors."
 date: 2024-12-11
-image: "../../../assets/say-goodbye-to-sharepoint-list-throttling-errors-heres-how.png"
+image: "../../../assets/sharepoint-list-throttling-errors-heres-how.png"
 slug: say-goodbye-to-sharepoint-list-throttling-errors-heres-how
 tags:
   ["SharePoint", "SPFx", "PnPjs", "Performance Optimization", "React", "M365"]

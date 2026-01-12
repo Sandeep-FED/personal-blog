@@ -1,7 +1,7 @@
 ---
 title: Building Focused Content with Single-Part App Pages in SharePoint
 description: "Learn how to create distraction-free, focused content experiences in SharePoint using single-part app pages. Discover configuration tips, best practices, and integration with Microsoft Teams."
-image: "../../../assets/building-focused-content-with-single-part-app-pages-in-sharepoint.png"
+image: "../../../assets/building-focused-content-spfx.png"
 date: 2025-08-14
 slug: building-focused-content-with-single-part-app-pages-in-sharepoint
 authors:

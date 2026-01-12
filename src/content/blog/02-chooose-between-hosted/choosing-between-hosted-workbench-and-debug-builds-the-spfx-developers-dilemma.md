@@ -2,7 +2,7 @@
 title: "Choosing Between Hosted Workbench and Debug Builds: The SPFx Developer's Dilemma"
 description: "Navigate the modern SPFx development landscape with this comprehensive guide comparing Hosted Workbench and Debug Builds. Learn best practices, debugging strategies, and when to use each tool for optimal SharePoint development workflow."
 date: 2025-01-01
-image: "../../../assets/choosing-between-hosted-workbench-and-debug-builds-the-spfx-developers-dilemma.png"
+image: "../../../assets/hosted-workbench-and-debug-builds-spfx.png"
 slug: choosing-between-hosted-workbench-and-debug-builds-the-spfx-developers-dilemma
 tags:
   [

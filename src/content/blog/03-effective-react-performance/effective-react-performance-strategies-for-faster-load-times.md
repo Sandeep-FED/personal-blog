@@ -2,7 +2,7 @@
 title: "Effective React Performance \U0001F680Strategies for Faster Load Times"
 description: "Discover effective strategies to optimize React app performance, including chunking, lazy loading, and code splitting, to achieve faster load times and enhance user experience."
 date: 2024-12-02
-image: ../../../assets/effective-react-performance-strategies-for-faster-load-times.png
+image: "../../../assets/react-performance-strategies.png"
 slug: effective-react-performance-strategies-for-faster-load-times
 tags: ["Web dev", "React"]
 updatedDate: 2024-12-02

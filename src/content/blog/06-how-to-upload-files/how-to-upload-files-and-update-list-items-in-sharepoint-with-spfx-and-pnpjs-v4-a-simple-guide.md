@@ -4,7 +4,7 @@ title:
   v4: A Simple Guide"
 description: "A comprehensive guide on uploading files and updating list items in SharePoint using SPFx and PnPjs, including best practices and code examples."
 date: 2025-03-31
-image: "../../../assets/how-to-upload-files-and-update-list-items-in-sharepoint-with-spfx-and-pnpjs-v4-a-simple-guide.png"
+image: "../../../assets/upload-files-update-list-items-pnpjs-v4.png"
 tags: ["SharePoint", "M365 Community", "M365", "SPFx", "React"]
 slug: how-to-upload-files-and-update-list-items-in-sharepoint-with-spfx-and-pnpjs-v4-a-simple-guide
 updatedDate: 2025-03-31

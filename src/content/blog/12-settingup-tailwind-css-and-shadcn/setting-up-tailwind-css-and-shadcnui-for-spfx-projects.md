@@ -2,7 +2,7 @@
 title: "\U0001F680 Setting Up Tailwind CSS and shadcn/ui for SPFx Projects"
 description: "A comprehensive guide to integrating Tailwind CSS and shadcn/ui components into SharePoint Framework projects using PostCSS and Gulp for modern, responsive UI development."
 date: 2024-11-12
-image: "../../../assets/setting-up-tailwind-css-and-shadcnui-for-spfx-projects.png"
+image: "../../../assets/setting-up-tailwind-css-and-shadcnui-for-spfx.png"
 slug: setting-up-tailwind-css-and-shadcnui-for-spfx-projects
 tags:
   [
