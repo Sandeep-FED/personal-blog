@@ -43,6 +43,14 @@ interface Props {
   tags: string[]
 }
 
+// Helper function to sanitize header values (remove non-ASCII characters)
+function sanitizeHeaderValue(value: string): string {
+  return value
+    .replace(/[^\x00-\x7F]/g, '') // Remove non-ASCII characters
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+}
+
 export async function GET(context: APIContext) {
   const { title, date, description, tags } = context.props as Props
 
@@ -59,13 +67,13 @@ export async function GET(context: APIContext) {
     `<div
       style="display: flex; flex-direction: column; width: 100%; height: 100%; border-radius: 24px; overflow: hidden; color: white; border: 1px solid rgba(255, 255, 255, 0.12); position: relative;background: #171717;"
     >
-      
+
       <div style="position: absolute;display: flex; width: 100%; height: 100%; background-color: rgba(255, 255, 255, 0.01); opacity: 0.6;"></div>
 
-      
+
       <div style="position: absolute; width: 350px; height: 350px;display: flex; background: radial-gradient(circle, rgba(250, 255, 100, 0.12) 0%, transparent 70%); top: -100px; right: -50px; border-radius: 50%;"></div>
 
-      
+
       <div style="flex: 4; padding: 48px 50px; display: flex; flex-direction: column; justify-content: center; position: relative;">
         <div style="color: ${colors.text.secondary}; font-size: 16px; display: flex; font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase;">
           ${formattedDate}
@@ -88,7 +96,7 @@ export async function GET(context: APIContext) {
         </div>
       </div>
 
-      
+
       <div
         style="flex: 1; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; padding: 32px 50px; align-items: center; justify-content: space-between; font-size: 20px; background: rgba(0,0,0,0.3); position: relative;"
       >
@@ -151,6 +159,9 @@ export async function GET(context: APIContext) {
 
   const pngData = image.asPng()
 
+  // Sanitize values for headers
+  const sanitizedTitle = sanitizeHeaderValue(title)
+
   return new Response(pngData as any, {
     headers: {
       'Content-Type': 'image/png',
@@ -158,7 +169,7 @@ export async function GET(context: APIContext) {
       'Cache-Control': 'public, max-age=31536000, immutable',
       'Content-Length': pngData.length.toString(),
       'Surrogate-Key': tags.join(' '),
-      'Query-String-Hash': title.toLowerCase().replace(/\s+/g, '-'),
+      'Query-String-Hash': sanitizedTitle.toLowerCase().replace(/\s+/g, '-'),
       'Cache-Tag': 'social-image',
       'X-Content-Type-Options': 'nosniff',
       'Last-Modified': new Date().toUTCString(),
