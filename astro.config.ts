@@ -46,7 +46,7 @@ function rehypeDemoteH1AndStripTitle() {
 }
 
 export default defineConfig({
-  site: 'https://www.cojocarudavid.me',
+  site: 'http://localhost:3000',
 
   integrations: [expressiveCode({
     themes: ['catppuccin-latte', 'ayu-dark'],
@@ -82,7 +82,7 @@ export default defineConfig({
         "@radix-ui/react-separator",
         "@radix-ui/react-slot"
       ]
-    },    
+    },
   },
 
   server: {

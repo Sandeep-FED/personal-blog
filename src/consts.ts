@@ -28,7 +28,7 @@ export const NAV_LINKS: SocialLink[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    href: 'https://github.com/Sandeep-FED?ref=personal-website',
+    href: 'https://github.com/Sandeep-FED',
     label: 'GitHub',
   },
   {

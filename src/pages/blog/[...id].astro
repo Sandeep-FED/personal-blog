@@ -13,6 +13,7 @@ import { formatDate, readingTime } from '@/lib/utils'
 import { Icon } from 'astro-icon/components'
 import { render } from 'astro:content'
 import LikePost from '@/components/LikePost.astro'
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const posts = await getAllPosts()
@@ -42,11 +43,13 @@ const structuredData = {
   description: post.data.description || '',
 }
 const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
+
+console.log('structured',structuredData.image)
 ---
 
 <Layout canonicalUrl={canonicalUrl} isWide={true}>
   <PostHead slot="head" post={post} />
-  
+
   <script
     type="application/ld+json"
     is:inline
@@ -65,8 +68,9 @@ const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
     </div>
     <section class="col-start-2 flex flex-col gap-y-6 text-start">
       <div class="flex flex-col">
+        <img src={`/src/assets/${post.id}.png`} alt={post.data.title}/>
         <h1
-          class="mb-2 text-3xl leading-tight font-medium text-pretty sm:text-5xl"
+          class="mb-2 text-3xl leading-tight font-semibold text-pretty sm:text-5xl pt-5"
         >
           {post.data.title}
         </h1>
@@ -210,7 +214,7 @@ const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
       </div>
 
       <hr class="my-8 hidden md:block" />
-      
+
       <div class="mb-2 mt-4">
         <h2
           id="skills-title"
@@ -229,7 +233,7 @@ const canonicalUrl = new URL(`/blog/${post.id}/`, Astro.site).toString();
         </div>
         <div class="mt-4 flex items-center gap-2 justify-center">
           <LikePost post={post} />
-        </div>        
+        </div>
       </div>
     </aside>
 
