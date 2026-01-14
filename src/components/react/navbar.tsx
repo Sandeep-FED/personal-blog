@@ -16,20 +16,20 @@ const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activePath, setActivePath] = useState("/")
-  
+
   useEffect(() => {
     setActivePath(window.location.pathname)
-    
+
     const handleRouteChange = () => {
       setActivePath(window.location.pathname)
     }
-    
+
     window.addEventListener('popstate', handleRouteChange)
     return () => {
       window.removeEventListener('popstate', handleRouteChange)
     }
   }, [])
-  
+
   useEffect(() => {
     const handleResize = debounce(() => {
       const isMobileView = window.matchMedia('(max-width: 768px)').matches
@@ -136,10 +136,9 @@ const Navbar = () => {
                       className={cn(
                         "text-sm font-medium capitalize transition-colors duration-200",
                         "relative py-1 px-1",
-                        "after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all after:duration-300",
-                        "hover:after:w-full hover:text-foreground",
-                        isActive 
-                          ? "text-foreground after:w-full after:bg-primary" 
+                        "hover:after:w-full hover:text-foreground hover:decoration-wavy hover:underline-offset-4 hover:underline hover:decoration-primary",
+                        isActive
+                          ? "text-foreground after:w-full after:bg-primary"
                           : "text-foreground/70"
                       )}
                       onClick={() => setActivePath(item.href)}
@@ -152,7 +151,7 @@ const Navbar = () => {
             </nav>
 
             <ThemeToggle />
-            
+
             {isMobile && (
               <Button
                 variant="ghost"
@@ -173,7 +172,7 @@ const Navbar = () => {
           </div>
         </div>
       </motion.header>
-      
+
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -194,34 +193,15 @@ const Navbar = () => {
                     <Link
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="dark:text-white text-lg font-bold font-custom capitalize dark:hover:text-white/80 transition-colors inline-block py-2 relative group"
+                      className="dark:text-white text-lg font-bold font-custom capitalize dark:hover:text-white/80 transition-colors inline-block py-2 relative group
+                      hover:after:w-full hover:text-foreground hover:decoration-wavy hover:underline-offset-4 hover:underline hover:decoration-primary,
+                      "
                     >
                       {item.label}
-                      <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-neutral-900 dark:bg-white group-hover:w-full transition-all duration-300 ease-in-out"></span>
                     </Link>
                   </motion.div>
                 ))}
               </nav>
-              
-              <motion.div
-                custom={NAV_LINKS.length + 1}
-                className="mt-auto flex flex-col items-center gap-6"
-              >
-                <div className="flex flex-wrap items-center justify-center gap-x-2 text-center">
-                  <span className="text-muted-foreground text-sm" aria-label="copyright">
-                    2020 - {new Date().getFullYear()} &copy; All rights reserved.
-                  </span>
-                  <Separator orientation="vertical" className="hidden h-4! sm:block" />
-                  <p className="text-muted-foreground text-sm" aria-label="open-source description">
-                    <Link
-                      href="https://github.com/cojocaru-david/portfolio"
-                      class="text-foreground"
-                      external
-                      underline>Open-source</Link
-                    > under MIT license
-                  </p>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         )}
