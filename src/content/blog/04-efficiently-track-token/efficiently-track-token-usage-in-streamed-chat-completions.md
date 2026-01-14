@@ -6,6 +6,8 @@ image: "../../../assets/efficiently-track-token-usage.png"
 slug: efficiently-track-token-usage-in-streamed-chat-completions
 tags: ["openai", "genai", "Azure", "Programming Blogs"]
 updatedDate: 2024-11-12
+authors:
+- "Sandeep P S"
 ---
 
 Tracking token usage can help you optimize API costs and make your application more efficient. Here’s a quick guide to retrieving token usage data from streamed responses using `stream_options={"include_usage": True}`.

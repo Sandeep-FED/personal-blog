@@ -15,6 +15,8 @@ tags:
     "React",
   ]
 updatedDate: 2024-11-12
+authors:
+- "Sandeep P S"
 ---
 
 Setting up Tailwind CSS and Shadcn in a SharePoint Framework (SPFx) project may seem challenging, but I’m here to guide you through each step! We’ll start by setting up Tailwind CSS with PostCSS and Gulp, then add Shadcn components to give your SPFx project a professional and modern look. Let’s dive in! 🔥

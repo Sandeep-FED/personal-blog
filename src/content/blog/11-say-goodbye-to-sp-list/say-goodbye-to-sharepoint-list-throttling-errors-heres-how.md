@@ -6,6 +6,8 @@ image: "../../../assets/sharepoint-list-throttling-errors-heres-how.png"
 slug: say-goodbye-to-sharepoint-list-throttling-errors-heres-how
 tags:
   ["SharePoint", "SPFx", "PnPjs", "Performance Optimization", "React", "M365"]
+authors:
+- "Sandeep P S"
 ---
 
 **Struggling with SharePoint’s 5,000-item list threshold? Don’t worry—you’re not alone. In this post, I’ll show you how to tackle this issue using a custom SPFx web part. Whether you’re a developer or an admin, this guide will walk you through a practical workaround to make large lists manageable.**

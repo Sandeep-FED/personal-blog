@@ -14,6 +14,8 @@ tags:
     "Best Practices",
     "Workflow Optimization",
   ]
+authors:
+- "Sandeep P S"
 ---
 
 Debugging SPFx web parts used to be straightforward with the local workbench—until it wasn’t. As SharePoint Framework evolved to include modern features, the local workbench fell behind, leaving developers searching for better alternatives.

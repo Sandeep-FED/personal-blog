@@ -12,6 +12,8 @@ tags:
     "React Hooks",
     "Frontend Development",
   ]
+authors:
+- "Sandeep P S"
 ---
 
 ### **Introduction: Wrapping Things Up**

@@ -6,6 +6,8 @@ image: "../../../assets/react-lifecycle-updating-phase.png"
 slug: react-lifecycle-updating-phase
 tags:
   ["React", "Web Development", "Component Lifecycle", "Frontend Development"]
+authors:
+- "Sandeep P S"
 ---
 
 ### **Introduction: Where We Left Off**

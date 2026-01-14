@@ -6,6 +6,8 @@ image: "../../../assets/react-performance-strategies.png"
 slug: effective-react-performance-strategies-for-faster-load-times
 tags: ["Web dev", "React"]
 updatedDate: 2024-12-02
+authors:
+- "Sandeep P S"
 ---
 
 React apps are loved for their speed and scalability, but as your app grows, it can slow down significantly. One of the main culprits? Bloated JavaScript bundles. The result? Slow load times, frustrated users, and higher bounce rates. But here’s the good news: with optimization techniques like **chunking**, **lazy loading**, **code splitting**, and **suspense**, you can completely transform your app’s performance.

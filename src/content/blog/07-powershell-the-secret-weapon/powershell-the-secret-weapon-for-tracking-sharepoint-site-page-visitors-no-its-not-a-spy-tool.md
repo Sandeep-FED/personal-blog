@@ -5,6 +5,8 @@ date: 2024-12-25
 image: "../../../assets/powershell-track-sharepoint-site-page-visitors.png"
 slug: powershell-the-secret-weapon-for-tracking-sharepoint-site-page-visitors-no-its-not-a-spy-tool
 tags: ["PowerShell", "SharePoint", "Analytics", "Automation"]
+authors:
+- "Sandeep P S"
 ---
 
 Hello SharePoint aficionados! 👋

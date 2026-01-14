@@ -15,6 +15,8 @@ tags:
     "M365",
   ]
 updateDate: 2025-02-16
+authors:
+- "Sandeep P S"
 ---
 
 If you’ve ever worked on creating an **Application Customizer** with a React component in SharePoint Framework (SPFx), chances are you’ve encountered an error like the one in the console below:

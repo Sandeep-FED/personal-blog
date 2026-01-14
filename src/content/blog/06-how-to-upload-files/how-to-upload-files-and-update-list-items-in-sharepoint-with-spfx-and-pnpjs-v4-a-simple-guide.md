@@ -8,6 +8,8 @@ image: "../../../assets/upload-files-update-list-items-pnpjs-v4.png"
 tags: ["SharePoint", "M365 Community", "M365", "SPFx", "React"]
 slug: how-to-upload-files-and-update-list-items-in-sharepoint-with-spfx-and-pnpjs-v4-a-simple-guide
 updatedDate: 2025-03-31
+authors:
+- "Sandeep P S"
 ---
 
 ## Quick Intro
