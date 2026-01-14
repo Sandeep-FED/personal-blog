@@ -16,23 +16,7 @@ export async function getRecentPosts(
   count: number,
 ): Promise<CollectionEntry<'blog'>[]> {
   const posts = await getAllPosts()
-  const postsByDay = posts.reduce<Record<string, CollectionEntry<'blog'>[]>>((acc, post) => {
-    const key = getDayKey(post.data.date)
-    if (!acc[key]) {
-      acc[key] = []
-    }
-    acc[key].push(post)
-    return acc
-  }, {})
-
-  const randomPostsPerDay = Object.values(postsByDay).map(postsForDay => {
-    const randomIndex = Math.floor(Math.random() * postsForDay.length)
-    return postsForDay[randomIndex]
-  })
-
-  const shuffled = randomPostsPerDay.sort(() => Math.random() - 0.5)
-
-  return shuffled.slice(0, count)
+  return posts.slice(0, count)
 }
 
 export async function getAdjacentPosts(currentId: string): Promise<{
@@ -107,7 +91,7 @@ export async function getAllProjects(): Promise<CollectionEntry<'projects'>[]> {
   const projects = await getCollection('projects')
   return projects
     .sort((a, b) => (b.data.startDate?.valueOf() ?? 0) - (a.data.startDate?.valueOf() ?? 0))
-} 
+}
 
 export async function getProjectsFeaturedTags(maxCount: number): Promise<string[]> {
   const projects = await getAllProjects()
