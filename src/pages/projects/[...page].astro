@@ -36,7 +36,7 @@ const currentUrl = Astro.url;
       <div>
           <div class="flex w-fit items-center gap-2 text-primary">
             <Icon name="lucide:star" class="h-4 w-4 text-yellow-500 animate-pulse" />
-            <p class="shimmer word-spacing font-mono text-sm uppercase leading-none text-primary">My Work</p>
+            <p class="shimmer word-spacing font-mono text-sm uppercase leading-none text-primary">My Works</p>
           </div>
           <h2
             id="skills-title"
@@ -44,21 +44,21 @@ const currentUrl = Astro.url;
           >
             Projects
           </h2>
-          <p class="text-muted-foreground text-md max-w-2xl mt-3">
-            Here are some of the projects I have worked on. I am always looking for new challenges and opportunities to learn and grow as a developer. If you have a project in mind, feel free to reach out!
+          <p class="text-muted-foreground text-md max-w-full mt-3">
+            A collection of real-world solutions built with SharePoint, Power Apps, Power Automate, Azure, and AI—showcasing practical implementations and business-focused outcomes.
           </p>
       </div>
       <div>
-        <BuyMeCoffee />
-      </div>  
+        <!-- <BuyMeCoffee /> -->
+      </div>
     </div>
-  
+
     <div class="mt-12 grid grid-cols-1 py-sm sm:grid-cols-2 gap-x-8 mb-16 gap-y-8">
       {projectData.map((project, _) => (
         <div
           class="group h-full w-full transition-all duration-300 hover:translate-y-[-4px] even:sm:mt-14"
         >
-          <a class="flex flex-col h-full w-full rounded-2xl overflow-hidden bg-card hover:shadow-lg transition-all duration-300 border border-card-foreground/10" href={`/projects/${project.id}`} aria-label="Project link">
+          <a class="flex flex-col h-full w-full rounded-2xl overflow-hidden bg-card hover:shadow-lg transition-all duration-300 border border-card-foreground/10" href={project.data.link} aria-label="Project link" target="_blank" rel="referrer">
             <div
               class="aspect-[16/10] w-full overflow-hidden"
             >
@@ -78,22 +78,18 @@ const currentUrl = Astro.url;
               <div>
                 <h3 class="text-xl font-medium text-foreground mb-2">{project.data.name}</h3>
                 <p class="text-sm text-muted-foreground line-clamp-2 mb-4">
-                  {project.data.description || "An innovative project showcasing creativity and technical skills"}
+                  {project.data.description}
                 </p>
               </div>
               <div class="flex flex-wrap justify-between items-center mt-auto pt-3 border-t border-border/40">
                 <div class="flex flex-wrap gap-2">
-                  {project.data.tags?.slice(0, 2).map((tag) => (
+                  {project.data.tags.map((tag) => (
                     <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary font-medium">{tag}</span>
                   ))}
-                  {project.data.tags?.length > 2 && (
+                  {/* {project.data.tags?.length > 2 && (
                     <span class="text-xs px-2 py-1 rounded-full bg-secondary/80 text-primary font-medium">+{project.data.tags.length - 2}</span>
-                  )}
+                  )} */}
                 </div>
-                <p class="text-xs font-medium text-muted-foreground flex items-center">
-                  <Icon name="lucide:calendar" class="h-3 w-3 mr-1" />
-                  {project.data.endDate ? new Date(project.data.endDate).getFullYear() : 'Ongoing'}
-                </p>
               </div>
             </div>
           </a>
