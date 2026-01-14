@@ -32,7 +32,7 @@ function cleanupHeading(text: string): string {
 
 <details
   open
-  class="group col-start-2 rounded-xl border p-4"
+  class="group col-start-2 rounded-xl border p-4 bg-neutral-950"
 >
   <summary
     class="flex cursor-pointer items-center justify-between text-xl font-medium group-open:pb-4 group-open:border-b"
@@ -44,7 +44,7 @@ function cleanupHeading(text: string): string {
       >
         Table of Contents <Icon
           name="lucide:chevron-down"
-          class="size-5 shrink-0 transition-transform group-open:rotate-180"
+          class="size-5 shrink-0 transition-transform group-open:rotate-180 mr-auto"
         />
       </h2>
       <p class="text-sm text-neutral-500 dark:text-neutral-400">
@@ -56,11 +56,11 @@ function cleanupHeading(text: string): string {
 
   <ScrollArea
     client:load
-    className="flex max-h-64 flex-col overflow-y-auto xl:max-h-[calc(100vh-8rem)]"
+    className="flex max-h-64 flex-col overflow-y-auto"
     type="always"
   >
     <ul
-      class="flex list-none flex-col gap-y-2 px-4 xl:mr-8"
+      class="flex list-none flex-col gap-y-2"
       id="table-of-contents"
     >
       {
@@ -73,7 +73,8 @@ function cleanupHeading(text: string): string {
           >
             <a
               href={`#${heading.slug}`}
-              class="marker:text-foreground/30 block list-disc px-3 py-2 underline decoration-transparent underline-offset-[3px] transition-colors duration-200 hover:decoration-inherit xl:list-none"
+              class="marker:text-foreground/30 block list-disc px-3 py-2 underline
+              decoration-wavy decoration-transparent underline-offset-6 hover:decoration-primary transition-colors duration-200 xl:list-none"
               aria-label={`Scroll to ${heading.text}`}
               title={`Scroll to ${heading.text}`}
             >
