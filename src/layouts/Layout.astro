@@ -7,6 +7,7 @@ import Head from '@/components/Head.astro'
 import Navbar from '@/components/react/navbar'
 import { SITE } from '@/consts'
 import { cn } from '@/lib/utils'
+import ClientRouter from 'astro/components/ClientRouter.astro';
 
 const {
   isWide = false
@@ -26,29 +27,45 @@ const {
     <!-- DNS prefetch for external resources -->
     <link rel="dns-prefetch" href="//analytics.ahrefs.com" />
 
-    <script is:inline data-astro-rerun>
-      (function() {
-        try {
-          const localStorageTheme = localStorage.getItem('theme');
-          const isDark =
-            (localStorageTheme === 'dark') ||
-            (!localStorageTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    <script is:inline transition:persist>
+  (function() {
+    function applyTheme() {
+      try {
+        const stored = localStorage.getItem('theme');
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDark = stored === 'dark' || (!stored && prefersDark);
 
-          document.documentElement.classList.toggle('dark', isDark);
-          localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.documentElement.classList.toggle('dark', isDark);
+      } catch (e) {
+        console.warn('Theme apply failed', e);
+      }
+    }
 
-          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-            if (!localStorage.getItem('theme')) {
-              document.documentElement.classList.toggle('dark', e.matches);
-              localStorage.setItem('theme', e.matches ? 'dark' : 'light');
-            }
-          });
-        } catch (error) {
-          console.warn('Theme setting failed:', error);
-        }
-      })();
-    </script>
+    // Apply immediately on load
+    applyTheme();
+
+    // Only apply BEFORE swap to prevent double application
+    document.addEventListener('astro:before-swap', (e) => {
+      // Apply theme to the new document before it swaps
+      const stored = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const isDark = stored === 'dark' || (!stored && prefersDark);
+
+      // Apply to the incoming document
+      e.newDocument.documentElement.classList.toggle('dark', isDark);
+    });
+
+    // System theme changes
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    media.addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    });
+  })();
+</script>
     <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    <ClientRouter/>
   </Head>
   <body>
     <div class="flex h-fit min-h-screen w-full flex-col gap-y-4 sm:gap-y-6 font-sans">

@@ -1,82 +1,50 @@
 import { Button } from '@/components/ui/button'
 import { SunIcon, MoonIcon } from 'lucide-react'
-import { useEffect } from 'react'
-export const prerender = true
-export const dynamic = 'force-dynamic'
+import { useEffect, useState } from 'react'
 
 const ThemeToggle: React.FC = () => {
+  const [mounted, setMounted] = useState(false)
+
   useEffect(() => {
-    const theme = (() => {
-      const localStorageTheme = localStorage?.getItem('theme') ?? ''
-      if (['dark', 'light'].includes(localStorageTheme)) {
-        return localStorageTheme
-      }
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        return 'dark'
-      }
-      return 'light'
-    })()
-
-    if (theme === 'light') {
-      document.documentElement.classList.remove('dark')
-    } else {
-      document.documentElement.classList.add('dark')
-    }
-
-    window.localStorage.setItem('theme', theme)
-
-    const handleToggleClick = () => {
-      const element = document.documentElement
-
-      element.classList.add('disable-transitions')
-      element.classList.toggle('dark')
-
-      window.getComputedStyle(element).getPropertyValue('opacity')
-
-      requestAnimationFrame(() => {
-        element.classList.remove('disable-transitions')
-      })
-
-      const isDark = element.classList.contains('dark')
-      localStorage.setItem('theme', isDark ? 'dark' : 'light')
-    }
-
-    const initThemeToggle = () => {
-      const themeToggle = document.getElementById('theme-toggle')
-      if (themeToggle) {
-        themeToggle.addEventListener('click', handleToggleClick)
-      }
-    }
-
-    initThemeToggle()
-
-    const handleAfterSwap = () => {
-      const storedTheme = localStorage.getItem('theme')
-      const element = document.documentElement
-
-      element.classList.add('disable-transitions')
-
-      window.getComputedStyle(element).getPropertyValue('opacity')
-
-      if (storedTheme === 'dark') {
-        element.classList.add('dark')
-      } else {
-        element.classList.remove('dark')
-      }
-
-      requestAnimationFrame(() => {
-        element.classList.remove('disable-transitions')
-      })
-
-      initThemeToggle()
-    }
-
-    document.addEventListener('astro:after-swap', handleAfterSwap)
-
-    return () => {
-      document.removeEventListener('astro:after-swap', handleAfterSwap)
-    }
+    setMounted(true)
   }, [])
+
+  const handleToggleClick = () => {
+    const element = document.documentElement
+
+    // Disable ALL transitions during theme change
+    element.classList.add('disable-transitions')
+
+    // Toggle theme
+    element.classList.toggle('dark')
+
+    // Force reflow to apply the disable-transitions class
+    void element.offsetHeight
+
+    // Save to localStorage
+    const isDark = element.classList.contains('dark')
+    localStorage.setItem('theme', isDark ? 'dark' : 'light')
+
+    // Re-enable transitions after a brief delay
+    setTimeout(() => {
+      element.classList.remove('disable-transitions')
+    }, 0)
+  }
+
+  // Don't render until mounted to avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <Button
+        variant="secondary"
+        size="icon"
+        title="Toggle theme"
+        disabled
+      >
+        <SunIcon className="size-4" />
+        <span className="sr-only">Toggle theme</span>
+      </Button>
+    )
+  }
 
   return (
     <Button
@@ -84,6 +52,7 @@ const ThemeToggle: React.FC = () => {
       variant="secondary"
       size="icon"
       title="Toggle theme"
+      onClick={handleToggleClick}
     >
       <SunIcon className="size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
       <MoonIcon className="absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
