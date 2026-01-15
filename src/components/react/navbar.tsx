@@ -8,7 +8,6 @@ import debounce from 'lodash.debounce'
 import Logo from '../ui/logo'
 import { Button } from '@/components/ui/button'
 import { Menu, X } from 'lucide-react'
-import { Separator } from '../ui/separator'
 
 const Navbar = () => {
   const [scrollLevel, setScrollLevel] = useState(0)
@@ -97,7 +96,7 @@ const Navbar = () => {
           isScrolled && !isMobile && 'backdrop-blur-md',
           isScrolled && !isMobile && 'border-foreground/10',
           isScrolled && !isMobile && 'border',
-          isScrolled && !isMobile && 'bg-background/80',
+          isScrolled && !isMobile && 'bg-white/60 dark:bg-black/60',
           isScrolled && !isMobile && 'max-w-[calc(100vw-5rem)]',
           !isMobile && 'top-2 lg:top-4 xl:top-6',
           isMobile && 'top-0',

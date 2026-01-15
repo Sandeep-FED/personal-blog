@@ -4,7 +4,7 @@ import type { CollectionEntry } from 'astro:content'
 
 const BlogCardJSX = ({ entry }: { entry: CollectionEntry<'blog'> }) => {
   return (
-    <div className="hover:bg-secondary/50 rounded-xl border p-4 transition-colors duration-300 ease-in-out">
+    <div className="bg-card dark:hover:bg-secondary/25 hover:bg-secondary/15 rounded-xl border p-4 transition-colors duration-300 ease-in-out">
       <a
         href={`/${entry.collection}/${entry.id}`}
         className="flex flex-col gap-4 sm:flex-row"

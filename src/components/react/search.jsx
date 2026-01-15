@@ -77,7 +77,7 @@ function Search({ searchList, initialPosts }) {
           autoComplete="off"
           autoCorrect="off"
           placeholder="Search posts"
-          className="w-full outline-none focus:ring-0 dark:bg-neutral-900 dark:text-white"
+          className="w-full outline-none focus:ring-0 dark:bg-neutral-900 dark:text-white bg-card"
         />
       </div>
 
