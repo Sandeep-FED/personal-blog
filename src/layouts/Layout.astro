@@ -8,6 +8,9 @@ import Navbar from '@/components/react/navbar'
 import { SITE } from '@/consts'
 import { cn } from '@/lib/utils'
 import ClientRouter from 'astro/components/ClientRouter.astro';
+import Analytics from '@vercel/analytics/astro';
+import headerGradient from '@/assets/header-gradient.svg';
+import footerGradient from '@/assets/footer-gradient.svg';
 
 const {
   isWide = false
@@ -65,12 +68,18 @@ const {
   })();
 </script>
     <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
+    <Analytics />
     <ClientRouter />
   </Head>
   <body>
-    <div class="flex h-fit min-h-screen w-full flex-col gap-y-4 sm:gap-y-6 font-sans">
+    <div class="flex h-fit min-h-screen w-full flex-col gap-y-4 sm:gap-y-6 font-sans relative">
+      <!-- Header Gradient -->
+      <div class="absolute top-0 left-0 w-full h-auto pointer-events-none z-999 overflow-hidden" aria-hidden="true">
+        <img src={headerGradient.src} alt="" class="w-full h-auto object-cover" />
+      </div>
+
       <Navbar client:load />
-      <main class="flex grow flex-col bg-background mt-16 lg:mt-6" aria-label="Main content" role="main">
+      <main class="flex grow flex-col bg-background mt-16 lg:mt-6 relative z-10" aria-label="Main content" role="main">
         <div
           class={cn(
             'mx-auto flex grow flex-col gap-y-4 sm:gap-y-6 px-3 py-10 sm:py-16 md:py-20 lg:py-24 sm:px-6 lg:px-8 relative',
@@ -80,6 +89,12 @@ const {
           <slot />
         </div>
       </main>
+
+      <!-- Footer Gradient -->
+      <div class="absolute bottom-0 left-0 w-full h-auto pointer-events-none z-999 overflow-hidden" aria-hidden="true">
+        <img src={footerGradient.src} alt="" class="w-full h-auto object-cover" />
+      </div>
+
       <Footer />
     </div>
   </body>
