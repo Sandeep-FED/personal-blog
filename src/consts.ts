@@ -4,7 +4,7 @@ export const SITE: Site = {
   title: 'Sandeep P S',
   description:
     "Microsoft MVP (M365, SharePoint)🏅 | Senior Software Engineer @ EY | Blogger | Building M365 + AI-powered experiences that make collaboration frictionless 🚀",
-  href: 'https://www.sandeepps.me',
+  href: 'https://sandeepps-m365.in/',
   author: 'Sandeep P S',
   locale: 'en-US',
   location: 'India',
