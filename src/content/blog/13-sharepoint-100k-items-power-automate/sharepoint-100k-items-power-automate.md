@@ -48,8 +48,6 @@ Before we go further, here's what you need to know about the **Get Items** actio
 
 That's the hard ceiling. If your list has more than 100k records, this connector won't cut it.
 
-[Screenshot]
-
 ---
 
 ## The Fix: SharePoint REST API (Standard Connector)
@@ -76,8 +74,7 @@ The `$top` parameter controls how many items you get per page. The maximum is **
 
 If your list has 200,000 items and you set `$top=3000`, you'll get 3,000 items per page and the loop will run until it's pulled everything.
 
-[Screenshot]
-
+![Variable initialization](../../../assets/Intialize.png)
 ---
 
 ### Step 2 — Add a "Do Until" Action
@@ -95,7 +92,7 @@ In the loop parameters, set **Loop Until** to:
 1. By default, Do Until runs a maximum of **60 iterations**. You can increase this to **200** in the action settings.
 2. Set the **Timeout** properly. If your list is large and the loop runs for a long time without a timeout configured, the flow can break mid-run.
 
-[Screenshot]
+![Do until](../../../assets/DoUntil.png)
 
 ---
 
@@ -113,7 +110,7 @@ Click on **Advanced Parameters** and add this header:
 |---|---|
 | Accept | application/json;odata=verbose |
 
-[Screenshot]
+![Send HTTP](../../../assets/SendHTTPRequest.png)
 
 ---
 
