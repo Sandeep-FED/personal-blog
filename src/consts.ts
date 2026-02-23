@@ -3,7 +3,7 @@ import type { IconMap, SocialLink, Site } from '@/types'
 export const SITE: Site = {
   title: 'Sandeep P S',
   description:
-    "Microsoft MVP (M365, SharePoint)🏅 | Senior Software Engineer @ EY | Blogger | Building M365 + AI-powered experiences that make collaboration frictionless 🚀",
+    "Microsoft MVP (M365, SharePoint)🏅 | Microsoft 365 Developer @ KLA | Blogger | Building M365 + AI-powered experiences that make collaboration frictionless 🚀",
   href: 'https://sandeepps-m365.in/',
   author: 'Sandeep P S',
   locale: 'en-US',
