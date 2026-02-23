@@ -35,10 +35,11 @@ const ThemeToggle: React.FC = () => {
   if (!mounted) {
     return (
       <Button
-        variant="secondary"
+        variant="ghost"
         size="icon"
         title="Toggle theme"
         disabled
+        className="rounded-full hover:bg-white/15 dark:hover:bg-white/10"
       >
         <SunIcon className="size-4" />
         <span className="sr-only">Toggle theme</span>
@@ -49,10 +50,11 @@ const ThemeToggle: React.FC = () => {
   return (
     <Button
       id="theme-toggle"
-      variant="secondary"
+      variant="ghost"
       size="icon"
       title="Toggle theme"
       onClick={handleToggleClick}
+      className="rounded-full hover:bg-white/15 dark:hover:bg-white/10"
     >
       <SunIcon className="size-4 scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
       <MoonIcon className="absolute size-4 scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
