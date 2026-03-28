@@ -70,11 +70,39 @@ const {
     <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="/rss.xml" />
     <Analytics />
     <ClientRouter />
+
+    <script is:inline transition:persist>
+    (function() {
+      function initScrollReveal() {
+        var els = document.querySelectorAll('[data-scroll]:not(.is-visible)');
+        if (!els.length) return;
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var el = entry.target;
+              var delay = el.getAttribute('data-scroll-delay');
+              if (delay) {
+                setTimeout(function() { el.classList.add('is-visible'); }, parseInt(delay));
+              } else {
+                el.classList.add('is-visible');
+              }
+              observer.unobserve(el);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        els.forEach(function(el) { observer.observe(el); });
+      }
+      // Run on initial load
+      initScrollReveal();
+      // Re-run after Astro page transitions
+      document.addEventListener('astro:page-load', initScrollReveal);
+    })();
+    </script>
   </Head>
   <body>
     <div class="flex h-fit min-h-screen w-full flex-col gap-y-4 sm:gap-y-6 font-sans relative">
 
-      <Navbar client:load />
+      <Navbar client:load transition:persist />
       <main class="flex grow flex-col bg-background mt-16 lg:mt-6 relative z-10" aria-label="Main content" role="main">
         <div class="absolute top-0 left-0 right-0 mx-auto w-full h-[100px]  bg-[linear-gradient(to_right,#a855f7,#6366f1,#22d3ee)] blur-3xl opacity-60 -z-50"></div>
         <div

@@ -65,7 +65,7 @@ console.log('structured',post.data)
         ]}
       />
     </div>
-    <section class="col-start-2 flex flex-col gap-y-6 text-start">
+    <section class="col-start-2 flex flex-col gap-y-6 text-start" data-scroll="fade-up">
       <div class="flex flex-col">
         <img src={post.data.image?.src} alt={post.data.title}/>
         <h1
@@ -98,6 +98,7 @@ console.log('structured',post.data)
 
     <div
       class="text-muted-foreground col-start-2 flex flex-wrap items-center justify-center gap-2 text-sm"
+      data-scroll="fade-up-sm" data-scroll-delay="100"
     >
       <div class="flex items-center gap-2">
         <span>{formatDate(post.data.date)}</span>
@@ -110,12 +111,13 @@ console.log('structured',post.data)
 
     {headings.length > 0 && <TableOfContents headings={headings} />}
 
-    <article class="prose col-start-2 max-w-none" aria-label="Blog post">
+    <article class="prose col-start-2 max-w-none" aria-label="Blog post" data-scroll="fade-up-sm" data-scroll-delay="200">
       <Content />
     </article>
 
      <aside
       class="group col-start-2 rounded-xl border p-4"
+      data-scroll="fade-up"
     >
       <div class="mb-2">
         <h2
