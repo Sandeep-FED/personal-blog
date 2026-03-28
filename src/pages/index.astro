@@ -2,9 +2,9 @@
 import Link from '@/components/Link.astro'
 import PageHead from '@/components/PageHead.astro'
 import BlogCard from '@/components/react/blog-card'
+import HeroBadge from '@/components/react/hero-badge'
 import Skills from '@/components/react/skills'
 import { buttonVariants } from '@/components/ui/button'
-import Logo from '@/components/ui/logo'
 import Layout from '@/layouts/Layout.astro'
 import { getRecentPosts } from '@/lib/data-utils'
 import { SITE } from '@/consts'
@@ -16,28 +16,22 @@ const currentUrl = Astro.url;
 <Layout canonicalUrl={currentUrl}>
   <PageHead slot="head" title="Sandeep P S | Microsoft MVP" />
   <section class="flex flex-col gap-y-12 px-4 py-8 sm:px-8 lg:px-16">
-    <div
-    class="flex flex-col items-center text-center sm:flex-row sm:items-start sm:gap-8 sm:text-left"
-    >
-      <div class="relative overflow-hidden rounded-lg sm:shrink-0 sm:overflow-hidden sm:rounded-lg">
-        <Logo
-          className="h-auto w-40 object-cover sm:w-48 md:w-56 lg:w-64 "
-        />
-      </div>
-      <div class="mt-8 sm:mt-0 sm:max-w-xl self-center">
-        <h1
-          class="font-custom text-foreground text-start text-4xl font-extrabold sm:text-5xl"
-        >
-          {SITE.title}
-        </h1>
-        <div class="mt-4 flex items-center gap-2" aria-label="location">
+    <div class="flex flex-col items-center">
+      <HeroBadge
+        name={SITE.title}
+        role="Microsoft 365 Developer"
+        client:load
+      />
+
+      <div class="mt-8 max-w-lg text-center hero-fade-up" style="animation-delay: 1.6s;">
+        <div class="flex items-center justify-center gap-2 mb-3" aria-label="location">
           <span
             class="bg-primary text-primary-foreground ring-primary/30 rounded-full px-3 py-1 text-sm font-medium ring-1"
           >
             I'm from
           </span>
           <span class="flex items-center gap-1">
-            <span class="text-foreground text-sm font-medium"> {SITE.location}</span>
+            <span class="text-foreground text-sm font-medium">{SITE.location}</span>
             <svg
   xmlns="http://www.w3.org/2000/svg"
   viewBox="0 0 640 480"
@@ -68,16 +62,15 @@ const currentUrl = Astro.url;
     <use xlink:href="#d" width="100%" height="100%" transform="rotate(-120)"></use>
   </g>
 </svg>
-
           </span>
         </div>
-        <p class="text-md text-foreground mt-4 text-start font-sans" title="description" aria-label="description">
+        <p class="text-sm text-muted-foreground font-sans leading-relaxed" title="description" aria-label="description">
           {SITE.description}
         </p>
       </div>
     </div>
 
-    <section class="relative" aria-labelledby="skills-title">
+    <section class="relative" aria-labelledby="skills-title" data-scroll="fade-up">
       <h2
         id="skills-title"
         class="font-custom text-foreground text-2xl font-bold"
@@ -90,13 +83,13 @@ const currentUrl = Astro.url;
       <p class="text-muted-foreground text-sm" aria-label="skills description">
         Tools, platforms, and frameworks I use to build real-world Microsoft 365 + cloud & AI solutions.
       </p>
-      <div>
+      <div data-scroll="scale-up" data-scroll-delay="150">
         <Skills client:load />
       </div>
     </section>
 
     <section class="flex flex-col gap-y-4" aria-labelledby="latest-posts-title" role="region">
-      <div class="relative" aria-labelledby="latest-posts-title">
+      <div class="relative" data-scroll="fade-up">
         <h2
           id="latest-posts-title"
           class="font-custom text-foreground text-2xl font-bold"
@@ -112,14 +105,14 @@ const currentUrl = Astro.url;
       </div>
       <ul class="flex flex-col gap-y-4">
         {
-          blog.map((post) => (
-            <li>
+          blog.map((post, i) => (
+            <li data-scroll="fade-up-sm" data-scroll-delay={String(i * 120)}>
               <BlogCard entry={post} />
             </li>
           ))
         }
       </ul>
-      <div class="flex justify-center" aria-label="see all posts">
+      <div class="flex justify-center" aria-label="see all posts" data-scroll="fade-up-sm" data-scroll-delay="400">
         <Link
           href="/blog"
           class={buttonVariants({ variant: 'ghost' }) + ' group'}
