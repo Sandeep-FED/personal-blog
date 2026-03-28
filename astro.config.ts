@@ -46,7 +46,7 @@ function rehypeDemoteH1AndStripTitle() {
 }
 
 export default defineConfig({
-  site: 'http://localhost:3000',
+  site: 'https://sandeepps-m365.in',
 
   integrations: [expressiveCode({
     themes: ['catppuccin-latte', 'ayu-dark'],
