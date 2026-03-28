@@ -1,7 +1,7 @@
 import { motion, useAnimationControls } from 'framer-motion'
 import { useEffect } from 'react'
 import mvpBadge from '../../assets/MVP_Badge_Horizontal_Preferred_Blue3005_RGB.png'
-import PFP from '../../assets/pfp.png'
+import PFP from '../../assets/PFP.png'
 
 interface HeroBadgeProps {
   name: string
