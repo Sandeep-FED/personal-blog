@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import debounce from 'lodash.debounce'
 import Logo from '../ui/logo'
 import { Button } from '@/components/ui/button'
-import { Menu, X, Github, Mail, Phone, Rss, ChevronRight, Home } from 'lucide-react'
+import { Github, Mail, Phone, Rss, Menu, X } from 'lucide-react'
 
 const SOCIAL_ICON_MAP: Record<string, React.ElementType> = {
   GitHub: Github,
@@ -16,50 +16,33 @@ const SOCIAL_ICON_MAP: Record<string, React.ElementType> = {
   RSS: Rss,
 }
 
-// Breadcrumb helper
-const getBreadcrumbs = (path: string) => {
-  if (path === '/') return []
-
-  const segments = path.split('/').filter(Boolean)
-  const breadcrumbs: { label: string; href: string }[] = []
-
-  segments.forEach((segment, index) => {
-    const href = '/' + segments.slice(0, index + 1).join('/')
-    const label = segment.replace(/-/g, ' ')
-    breadcrumbs.push({ label, href })
-  })
-
-  return breadcrumbs
-}
-
 const Navbar = () => {
   const [isMobile, setIsMobile] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activePath, setActivePath] = useState("/")
-  const [breadcrumbs, setBreadcrumbs] = useState<{ label: string; href: string }[]>([])
+  const [hoveredPath, setHoveredPath] = useState<string | null>(null)
 
   useEffect(() => {
     setActivePath(window.location.pathname)
-    setBreadcrumbs(getBreadcrumbs(window.location.pathname))
 
     const handleRouteChange = () => {
       setActivePath(window.location.pathname)
-      setBreadcrumbs(getBreadcrumbs(window.location.pathname))
+      setMobileMenuOpen(false)
     }
 
     window.addEventListener('popstate', handleRouteChange)
+    document.addEventListener('astro:after-swap', handleRouteChange)
     return () => {
       window.removeEventListener('popstate', handleRouteChange)
+      document.removeEventListener('astro:after-swap', handleRouteChange)
     }
   }, [])
 
   useEffect(() => {
     const handleResize = debounce(() => {
-      const isMobileView = window.matchMedia('(max-width: 768px)').matches
-      setIsMobile(isMobileView)
-      if (!isMobileView && mobileMenuOpen) {
-        setMobileMenuOpen(false)
-      }
+      const mobile = window.matchMedia('(max-width: 768px)').matches
+      setIsMobile(mobile)
+      if (!mobile) setMobileMenuOpen(false)
     }, 100)
 
     handleResize()
@@ -67,17 +50,11 @@ const Navbar = () => {
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [mobileMenuOpen])
+  }, [])
 
   useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
-    } else {
-      document.body.style.overflow = ''
-    }
-    return () => {
-      document.body.style.overflow = ''
-    }
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
   }, [mobileMenuOpen])
 
   return (
@@ -88,19 +65,17 @@ const Navbar = () => {
         className={cn(
           'fixed left-1/2 z-30 -translate-x-1/2',
           'top-3 lg:top-5',
-          isMobile && 'top-0 w-full',
         )}
       >
         <div
           className={cn(
             'flex items-center gap-1 px-2 py-2 md:px-4 md:py-2.5',
-            'backdrop-blur-xl',
-            'bg-white/10 dark:bg-white/[0.06]',
-            'border border-white/20 dark:border-white/10',
-            'shadow-lg shadow-black/5 dark:shadow-black/20',
+            'backdrop-blur-xl backdrop-saturate-150',
+            'bg-background/60 dark:bg-background/50',
+            'border border-border/50 dark:border-white/[0.08]',
+            'shadow-lg shadow-black/[0.03] dark:shadow-black/20',
             'transition-all duration-300 ease-in-out',
-            !isMobile && 'rounded-full',
-            isMobile && 'rounded-none w-full',
+            'rounded-full',
           )}
         >
           {/* Logo */}
@@ -116,38 +91,59 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Nav Links */}
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
-            {NAV_LINKS.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? activePath === "/"
-                  : activePath.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={cn(
-                    "text-sm font-medium capitalize transition-colors duration-200",
-                    "rounded-full px-3.5 py-1.5",
-                    "hover:bg-white/15 dark:hover:bg-white/10 hover:text-foreground",
-                    isActive
-                      ? "bg-white/20 dark:bg-white/10 text-foreground dark:text-white"
-                      : "text-foreground/70 dark:text-white/60"
-                  )}
-                  onClick={() => setActivePath(item.href)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+          {/* Desktop: Nav Links */}
+          {!isMobile && (
+            <nav
+              className="flex items-center gap-0.5"
+              aria-label="Main navigation"
+              onMouseLeave={() => setHoveredPath(null)}
+            >
+              {NAV_LINKS.map((item) => {
+                const isActive =
+                  item.href === "/"
+                    ? activePath === "/"
+                    : activePath.startsWith(item.href);
+                const isHovered = hoveredPath === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={cn(
+                      "relative text-sm font-medium capitalize px-3.5 py-1.5 rounded-full",
+                      "transition-colors duration-200",
+                      isActive
+                        ? "text-foreground dark:text-white"
+                        : "text-foreground/60 dark:text-white/50 hover:text-foreground dark:hover:text-white"
+                    )}
+                    onClick={() => setActivePath(item.href)}
+                    onMouseEnter={() => setHoveredPath(item.href)}
+                  >
+                    {isHovered && (
+                      <motion.span
+                        layoutId="nav-hover"
+                        className="absolute inset-0 rounded-full bg-black/10 dark:bg-white/10"
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+                      />
+                    )}
+                    {isActive && (
+                      <motion.span
+                        layoutId="nav-active"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-3 rounded-full bg-primary"
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.4 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
+                  </Link>
+                );
+              })}
+            </nav>
+          )}
 
           {/* Separator */}
           <div className="hidden md:block h-5 w-px bg-foreground/15 dark:bg-white/15 mx-1" />
 
           {/* Social Icons */}
-          <div className="hidden md:flex items-center gap-0.5">
+          <div className="flex items-center gap-0.5 ml-auto md:ml-0">
             {SOCIAL_LINKS.filter(l => l.label !== 'RSS').map(({ href, label }) => {
               const IconComponent = SOCIAL_ICON_MAP[label]
               if (!IconComponent) return null
@@ -161,9 +157,11 @@ const Navbar = () => {
                   title={label}
                   className={cn(
                     "inline-flex items-center justify-center rounded-full p-2",
-                    "text-foreground/60 dark:text-white/50",
-                    "hover:text-foreground dark:hover:text-white hover:bg-white/15 dark:hover:bg-white/10",
-                    "transition-colors duration-200"
+                    "text-foreground/50 dark:text-white/40",
+                    "hover:text-foreground dark:hover:text-white",
+                    "hover:bg-black/[0.06] dark:hover:bg-white/10",
+                    "hover:scale-110 active:scale-95",
+                    "transition-all duration-200"
                   )}
                 >
                   <IconComponent className="size-4" />
@@ -173,50 +171,47 @@ const Navbar = () => {
           </div>
 
           {/* Separator */}
-          <div className="hidden md:block h-5 w-px bg-foreground/15 dark:bg-white/15 mx-1" />
+          <div className="h-5 w-px bg-foreground/15 dark:bg-white/15 mx-1" />
 
-          {/* Theme Toggle + Mobile Menu */}
-          <div className="flex items-center gap-1 ml-auto md:ml-0">
-            <ThemeToggle />
+          {/* Theme Toggle */}
+          <ThemeToggle />
 
-            {isMobile && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setMobileMenuOpen(true)}
-                aria-label="Open menu"
-                className="h-9 w-9 rounded-full p-0 transition-colors duration-200 ease-in-out"
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
-            )}
-          </div>
+          {/* Mobile Menu Button */}
+          {isMobile && (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open menu"
+              className="h-9 w-9 rounded-full p-0"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          )}
         </div>
       </header>
 
-      {/* Mobile Menu - Right side panel */}
+      {/* Mobile Side Panel */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop overlay */}
             <motion.div
               key="mobile-backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-20 bg-black/50 backdrop-blur-sm"
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
               onClick={() => setMobileMenuOpen(false)}
             />
 
-            {/* Side panel */}
             <motion.div
               key="mobile-panel"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 250 }}
-              className="fixed top-0 right-0 bottom-0 z-25 w-[60%] max-w-[300px] bg-background/95 dark:bg-background/98 backdrop-blur-xl border-l border-foreground/10 dark:border-white/10 shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 z-50 w-[65%] max-w-[280px] bg-background/95 dark:bg-background/98 backdrop-blur-xl border-l border-border/50 dark:border-white/10 shadow-2xl"
             >
               {/* Close button */}
               <div className="flex justify-end p-4 pt-5">
@@ -231,8 +226,8 @@ const Navbar = () => {
                 </Button>
               </div>
 
-              {/* Nav links - right aligned */}
-              <nav className="flex flex-col items-end gap-2 px-6 pt-2">
+              {/* Nav links */}
+              <nav className="flex flex-col items-end gap-1 px-6 pt-2">
                 {NAV_LINKS.map((item) => {
                   const isActive =
                     item.href === "/"
@@ -244,10 +239,10 @@ const Navbar = () => {
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "text-lg font-medium font-custom capitalize transition-colors py-2",
+                        "text-lg font-medium font-custom capitalize py-2.5 px-3 rounded-xl transition-colors duration-200",
                         isActive
                           ? "text-primary dark:text-primary"
-                          : "text-foreground/80 dark:text-white/80 hover:text-foreground dark:hover:text-white"
+                          : "text-foreground/70 dark:text-white/70 hover:text-foreground dark:hover:text-white"
                       )}
                     >
                       {item.label}
@@ -256,9 +251,9 @@ const Navbar = () => {
                 })}
               </nav>
 
-              {/* Mobile Social Icons */}
-              <div className="flex items-center justify-end gap-3 px-6 pb-8 pt-8 border-t border-foreground/10 dark:border-white/10 mx-6 mt-8">
-                {SOCIAL_LINKS.map(({ href, label }) => {
+              {/* Social Icons */}
+              <div className="flex items-center justify-end gap-3 px-6 pb-8 pt-8 border-t border-border/30 dark:border-white/10 mx-6 mt-8">
+                {SOCIAL_LINKS.filter(l => l.label !== 'RSS').map(({ href, label }) => {
                   const IconComponent = SOCIAL_ICON_MAP[label]
                   if (!IconComponent) return null
                   return (
