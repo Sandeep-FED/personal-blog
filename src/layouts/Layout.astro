@@ -74,8 +74,9 @@ const {
     <script is:inline transition:persist>
     (function() {
       function initScrollReveal() {
-        var els = document.querySelectorAll('[data-scroll]:not(.is-visible)');
+        var els = document.querySelectorAll('[data-scroll]');
         if (!els.length) return;
+
         var observer = new IntersectionObserver(function(entries) {
           entries.forEach(function(entry) {
             if (entry.isIntersecting) {
@@ -90,12 +91,37 @@ const {
             }
           });
         }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-        els.forEach(function(el) { observer.observe(el); });
+
+        els.forEach(function(el) {
+          if (el.classList.contains('is-visible')) return;
+          observer.observe(el);
+        });
       }
-      // Run on initial load
+
+      // On initial load
       initScrollReveal();
-      // Re-run after Astro page transitions
-      document.addEventListener('astro:page-load', initScrollReveal);
+
+      // Before swap: mark all data-scroll elements in the new page as visible
+      // so they don't flash as invisible during the DOM swap
+      document.addEventListener('astro:before-swap', function(e) {
+        var scrollEls = e.newDocument.querySelectorAll('[data-scroll]');
+        scrollEls.forEach(function(el) {
+          el.classList.add('is-visible');
+        });
+      });
+
+      // After page load: reset elements not in viewport so they animate on scroll
+      document.addEventListener('astro:page-load', function() {
+        var els = document.querySelectorAll('[data-scroll].is-visible');
+        els.forEach(function(el) {
+          var rect = el.getBoundingClientRect();
+          var inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+          if (!inViewport) {
+            el.classList.remove('is-visible');
+          }
+        });
+        initScrollReveal();
+      });
     })();
     </script>
   </Head>
