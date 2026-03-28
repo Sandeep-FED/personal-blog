@@ -8,6 +8,7 @@ import Navbar from '@/components/react/navbar'
 import { SITE } from '@/consts'
 import { cn } from '@/lib/utils'
 import ClientRouter from 'astro/components/ClientRouter.astro';
+import { fade } from 'astro:transitions';
 import Analytics from '@vercel/analytics/astro';
 import headerGradient from '@/assets/header-gradient.svg';
 import footerGradient from '@/assets/footer-gradient.svg';
@@ -129,7 +130,7 @@ const {
     <div class="flex h-fit min-h-screen w-full flex-col gap-y-4 sm:gap-y-6 font-sans relative">
 
       <Navbar client:load transition:persist />
-      <main class="flex grow flex-col bg-background mt-16 lg:mt-6 relative z-10" aria-label="Main content" role="main">
+      <main transition:animate={fade({ duration: '0.15s' })} class="flex grow flex-col bg-background mt-16 lg:mt-6 relative z-10" aria-label="Main content" role="main">
         <div class="absolute top-0 left-0 right-0 mx-auto w-full h-[100px]  bg-[linear-gradient(to_right,#a855f7,#6366f1,#22d3ee)] blur-3xl opacity-60 -z-50"></div>
         <div
           class={cn(
