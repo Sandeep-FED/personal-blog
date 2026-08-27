@@ -81,7 +81,7 @@ This field indicates whether admin connector consent bypass should be enabled fo
 
 Trigger the flow, pass in the `EnvironmentId` and `BotId` for the agent you want to fix, and you're done. No more repeated consent prompts for that bot.
 
-Note: Make sure to publish the agents once the bypassing is done.
+> Note: Make sure to publish the agents once the bypassing is done.
 
 ## Where this leaves things
 
