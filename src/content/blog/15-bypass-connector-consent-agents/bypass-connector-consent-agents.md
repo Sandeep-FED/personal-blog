@@ -81,6 +81,8 @@ This field indicates whether admin connector consent bypass should be enabled fo
 
 Trigger the flow, pass in the `EnvironmentId` and `BotId` for the agent you want to fix, and you're done. No more repeated consent prompts for that bot.
 
+Note: Make sure to publish the agents once the bypassing is done.
+
 ## Where this leaves things
 
 7 agents, 2 business divisions, zero consent loops left. This is the kind of fix that doesn't show up in a changelog with fanfare, but it removes a genuine blocker for anyone trying to get Copilot Studio agents into production with connectors attached.
